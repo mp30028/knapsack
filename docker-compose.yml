@@ -1,0 +1,14 @@
+version: "3.8"
+services:
+ 
+  hello-world:
+    container_name: hello-world
+    build: "."
+#    build:
+#      context: /02-hello-world
+#      dockerfile: ./02-hello-world/Dockerfile
+    image: hello-world:0.1
+
+    ports:
+      - 80:80
+      - 443:443

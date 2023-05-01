@@ -1,0 +1,46 @@
+<mxfile host="Electron" modified="2023-04-30T09:30:58.737Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.2.1 Chrome/112.0.5615.87 Electron/24.1.2 Safari/537.36" etag="2sBGdZTfIJCjOkoMfWUM" version="21.2.1" type="device">
+  <diagram name="Page-1" id="VHzIzA1Fzes3NZdCMBiO">
+    <mxGraphModel dx="785" dy="547" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="6-cEsbSgUN87VOkoxoCq-1" value="command" style="whiteSpace=wrap;aspect=fixed;fillColor=#dae8fc;strokeColor=#6c8ebf;sketch=1;shadow=0;rounded=0;sketchStyle=comic;fontFamily=Shadows Into Light;fontSize=18;fontStyle=0" vertex="1" parent="1">
+          <mxGeometry x="250" y="374" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="6-cEsbSgUN87VOkoxoCq-2" value="processing system" style="whiteSpace=wrap;aspect=fixed;fillColor=#F8CECC;strokeColor=#FF9999;sketch=1;shadow=0;rounded=0;sketchStyle=comic;fontFamily=Shadows Into Light;fontSize=18;" vertex="1" parent="1">
+          <mxGeometry x="350" y="374" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="6-cEsbSgUN87VOkoxoCq-3" value="event" style="whiteSpace=wrap;aspect=fixed;fillColor=#FF9933;strokeColor=#FF8000;sketch=1;shadow=0;rounded=0;sketchStyle=comic;fontFamily=Shadows Into Light;fontSize=18;" vertex="1" parent="1">
+          <mxGeometry x="450" y="374" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="6-cEsbSgUN87VOkoxoCq-4" value="policy" style="whiteSpace=wrap;aspect=fixed;fillColor=#E692C7;strokeColor=#B5739D;sketch=1;shadow=0;rounded=0;sketchStyle=comic;fontFamily=Shadows Into Light;fontSize=18;fontStyle=0" vertex="1" parent="1">
+          <mxGeometry x="550" y="374" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="6-cEsbSgUN87VOkoxoCq-5" value="aggregate" style="whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;aspect=fixed;sketch=1;shadow=0;rounded=0;sketchStyle=comic;fontFamily=Shadows Into Light;fontSize=18;" vertex="1" parent="1">
+          <mxGeometry x="350" y="464" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="6-cEsbSgUN87VOkoxoCq-6" value="read model" style="whiteSpace=wrap;fillColor=#00CF00;strokeColor=#4D4D4D;sketch=1;shadow=0;rounded=0;sketchStyle=comic;fontFamily=Shadows Into Light;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="230" y="434" width="70" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="6-cEsbSgUN87VOkoxoCq-7" value="external entity / actor" style="whiteSpace=wrap;fillColor=#FFD966;strokeColor=#4D4D4D;sketch=1;shadow=0;rounded=0;sketchStyle=comic;fontFamily=Shadows Into Light;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="190" y="464" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="6-cEsbSgUN87VOkoxoCq-8" value="" style="endArrow=oval;dashed=1;html=1;rounded=0;fontFamily=Shadows Into Light;fontSize=14;strokeColor=#999999;strokeWidth=2;endFill=1;exitX=0;exitY=1;exitDx=0;exitDy=0;" edge="1" source="6-cEsbSgUN87VOkoxoCq-9" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="210" y="24" as="sourcePoint" />
+            <mxPoint x="570.0000000000002" y="374" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="6-cEsbSgUN87VOkoxoCq-9" value="Text" style="text;html=1;strokeColor=none;fillColor=#E6E6E6;align=left;verticalAlign=bottom;whiteSpace=wrap;rounded=0;fontFamily=Shadows Into Light;fontSize=12;labelPosition=center;verticalLabelPosition=middle;" vertex="1" parent="1">
+          <mxGeometry x="570" y="300" width="60" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="6-cEsbSgUN87VOkoxoCq-10" value="Build and Run Source" style="whiteSpace=wrap;aspect=fixed;fillColor=#FF9933;strokeColor=#FF8000;sketch=1;shadow=0;rounded=0;sketchStyle=comic;fontFamily=Shadows Into Light;fontSize=18;" vertex="1" parent="1">
+          <mxGeometry x="50" y="840" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="6-cEsbSgUN87VOkoxoCq-11" value="Build and deploy source" style="whiteSpace=wrap;aspect=fixed;fillColor=#FF9933;strokeColor=#FF8000;sketch=1;shadow=0;rounded=0;sketchStyle=comic;fontFamily=Shadows Into Light;fontSize=18;" vertex="1" parent="1">
+          <mxGeometry x="220" y="840" width="80" height="80" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
