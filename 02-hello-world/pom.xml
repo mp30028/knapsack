@@ -9,7 +9,7 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>	
 	
-    <artifactId>hello-world</artifactId>
+    <artifactId>02-hello-world</artifactId>
 	<name>hello-world</name>
 	<description>A simple spring boot hello-world app</description>
 	<packaging>jar</packaging>
