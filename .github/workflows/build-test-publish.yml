@@ -42,8 +42,16 @@ jobs:
         - uses: actions/setup-java@v3
           with:
             java-version: 17
-            distribution: 'temurin' 
-        - run: mvn -B package --file pom.xml -DskipTests
+            distribution: 'temurin'
+            server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
+            settings-path: ${{ github.workspace }} # location for the settings.xml file
+            
+        - name: Build with Maven
+          run: mvn -B package --file pom.xml -DskipTests
+
+        - name: Publish to GitHub Packages Apache Maven
+          run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml
+          
 #        - run: mkdir ${{ env.staging_folder }} && cp target/*.jar ${{ env.staging_folder }}
         
 #        - uses: actions/upload-artifact@v3
