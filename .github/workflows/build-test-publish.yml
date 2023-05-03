@@ -9,9 +9,10 @@ on:
 
 env:
   staging_folder: staging
+  docker_image_tag: 0.1
 
 jobs:
-  build_and_test:
+  build-and-test-package:
 
     runs-on: ubuntu-latest
 
@@ -32,23 +33,39 @@ jobs:
         restore-keys: ${{ runner.os }}-m2 
     
     - name: Build project with Maven
-      run: mvn -B package --file pom.xml
+    - run: mvn -B package --file pom.xml
+    - run: cp 02-hello-world/target/*.jar ${{ env.staging_folder }}
 
-  publish-job:
+  publish-java-package:
     runs-on: ubuntu-latest
-    needs: [build_and_test]
+    needs: [build-and-test-package]
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-java@v3
-        with:
-          java-version: 17
-          distribution: "temurin"
-      - run: mvn -B package --file pom.xml -DskipTests
+#      - uses: actions/setup-java@v3
+#        with:
+#          java-version: 17
+#          distribution: "temurin"
+#      - run: mvn -B package --file pom.xml -DskipTests
       #- run: mkdir staging && cp target/*jar-with-dependencies.jar staging
       #- run: mkdir ${{ env.staging_folder }} && cp target/*.jar ${{ env.staging_folder }}
-      - run: cp 02-hello-world/target/*.jar ${{ env.staging_folder }}
+#      - run: cp 02-hello-world/target/*.jar ${{ env.staging_folder }}
 
       - uses: actions/upload-artifact@v3
         with:
           name: Package
           path: ${{ env.staging_folder }}
+
+  build-docker-image:
+    runs-on: ubuntu-latest
+    needs: [build-and-test-package]
+    steps:
+    - uses: actions/checkout@v3
+    - run: docker build . --file Dockerfile --tag hello-world:${{ env.docker_image_tag }}
+    - run: docker save --output ${{ env.staging_folder }}/hello-world.tar hello-world:${{ env.docker_image_tag }}
+    
+    - uses: actions/upload-artifact@v3
+      with:
+        name: Docker-Image
+        path: ${{ env.staging_folder }}
+        file: hello-world.tar
+    
