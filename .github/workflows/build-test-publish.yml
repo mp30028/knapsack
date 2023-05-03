@@ -1,11 +1,10 @@
 name: Build-Test-Publish
 
 on:
-# push:
-#    branches: [ main ]
     
  pull_request:
     branches: [ main ]
+    types: [closed]
 
 env:
   staging_folder: staging
@@ -44,8 +43,6 @@ jobs:
           java-version: 17
           distribution: "temurin"
       - run: mvn -B package --file pom.xml -DskipTests
-      #- run: mkdir staging && cp target/*jar-with-dependencies.jar staging
-      #- run: mkdir ${{ env.staging_folder }} && cp target/*.jar ${{ env.staging_folder }}
       - run: cp 02-hello-world/target/*.jar ${{ env.staging_folder }}
 
       - uses: actions/upload-artifact@v3
