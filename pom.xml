@@ -17,7 +17,7 @@
 	</properties>
 
     <modules>
-		<module>hello-world</module>
+		<module>02-hello-world</module>
 <!--    
 		<module>persons-api</module>
     	<module>chats-api</module>
