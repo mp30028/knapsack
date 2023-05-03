@@ -55,17 +55,5 @@ jobs:
           name: Package
           path: ${{ env.staging_folder }}
 
-  build-docker-image:
-    runs-on: ubuntu-latest
-    needs: [build_and_test_package]
-    steps:
-    - uses: actions/checkout@v3
-    - run: docker build . --file Dockerfile --tag hello-world:${{ env.docker_image_tag }}
-    - run: docker save --output ${{ env.staging_folder }}/hello-world.tar hello-world:${{ env.docker_image_tag }}
-    
-    - uses: actions/upload-artifact@v3
-      with:
-        name: Docker-Image
-        path: ${{ env.staging_folder }}
-        file: hello-world.tar
+
     
