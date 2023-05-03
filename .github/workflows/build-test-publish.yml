@@ -1,13 +1,13 @@
 name: Build-Test-Publish
 
 on:
-    
+
+ workflow_dispatch: 
+
  pull_request:
     branches: [ main ]
     types: [closed]
 
-env:
-  staging_folder: staging
 
 jobs:
   build-test-package:
@@ -32,12 +32,9 @@ jobs:
     
     - name: Build project with Maven
       run: mvn -B package --file pom.xml
-      
-    - name: Copy jar to staging
-      run: cp 02-hello-world/target/*.jar ${{ env.staging_folder }}
-      
-    - name: Upload Package
+            
+    - name: Upload hello-world-jar
       uses: actions/upload-artifact@v3
       with:
-        name: Package
-        path: ${{ env.staging_folder }}
+        name: hello-world-jar
+        path: 02-hello-world/target/hello-world*.jar
