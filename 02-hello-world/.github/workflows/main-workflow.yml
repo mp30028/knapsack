@@ -1,0 +1,89 @@
+name: Main-Workflow
+
+on:
+
+ workflow_dispatch: 
+
+ pull_request:
+    branches: [ main ]
+    types: [closed]
+
+
+jobs:
+  build-test-package:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up JDK 17
+      uses: actions/setup-java@v3
+      with:
+        java-version: 17
+        distribution: 'temurin'
+        
+    - name: Cache the Maven packages to speed up build
+      uses: actions/cache@v3
+      with:
+        path: ~/.m2
+        key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+        restore-keys: ${{ runner.os }}-m2 
+    
+    - name: Build project with Maven
+      #run: mvn -B package --file pom.xml
+      run: mvn -B clean package --file pom.xml spring-boot:repackage
+            
+    - name: Upload hello-world-jar
+      uses: actions/upload-artifact@v3
+      with:
+        name: hello-world-jar
+        path: target/hello-world*.jar
+
+  sftp-to-remote:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    needs: [build-test-package]
+
+    steps:
+      # Checkout the repository this workflow belongs to using a ready made global action called checkout
+      # The repository name is in an env variable called $GITHUB_WORKSPACE which this action uses
+      - uses: actions/checkout@v3
+
+      - name: Make staging directory
+        run: mkdir ./hello-world-jar
+
+      - name: Download the package
+        uses: actions/download-artifact@v3
+        with:
+          name: hello-world-jar
+          path: hello-world-jar
+#          path: ${{ env.staging_folder }}
+
+      #  Check out the sftp-to-remote action
+      - uses: mp30028/knapsack-hello-world/.actions/sftp-to-remote@main
+        with:
+          remote_username: ${{ secrets.REMOTE_USERNAME  }}
+          remote_host: ${{ secrets.REMOTE_SERVER  }}
+          remote_port: ${{ secrets.REMOTE_PORT  }}
+          remote_ssh_key: ${{ secrets.REMOTE_SSH_KEY  }}
+          #local_filepath: ./${{ env.staging_folder }}
+          local_filepath: ./hello-world-jar
+          remote_filepath: ${{ vars.REMOTE_FILEPATH  }}
+          
+  start-application:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    needs: [sftp-to-remote]
+
+    steps:
+      
+      #  Check out the sftp-folder-to-remote action
+      - uses: mp30028/knapsack-hello-world/.actions/execute-remote-command@main
+        with:
+          remote_username: ${{ secrets.REMOTE_USERNAME  }}
+          remote_host: ${{ secrets.REMOTE_SERVER  }}
+          remote_port: ${{ secrets.REMOTE_PORT  }}
+          remote_ssh_key: ${{ secrets.REMOTE_SSH_KEY  }}
+          #remote_cmd: nohup cd /installed-apps/persons-api; java -jar persons-api-with-workflow-0.0.1-SNAPSHOT.jar > logs.out 2> error.out < /dev/null &
+          remote_cmd: bash /installed-apps/hello-world-jar/force-start-container.sh jdk-17-hello-world

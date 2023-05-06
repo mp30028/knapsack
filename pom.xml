@@ -17,7 +17,7 @@
 	</properties>
 
     <modules>
-		<module>02-hello-world</module>
+		<module>hello-world</module>
 <!--    
 		<module>persons-api</module>
     	<module>chats-api</module>
@@ -34,6 +34,17 @@
 		    <artifactId>spring-boot</artifactId>
 		    <version>${springboot.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+			<version>${springboot.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<version>${springboot.version}</version>
+		</dependency>		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
